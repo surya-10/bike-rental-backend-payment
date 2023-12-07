@@ -4,6 +4,9 @@ const { findUserAndUpdate } = require("./controller");
 let imagesRouter = express.Router();
 dotenv.config()
 const stripe = require('stripe')(process.env.secret_key);
+imagesRouter.get("/", async(req, res)=>{
+    console.log("hello")
+})
 imagesRouter.post("/booking/payment-page/user-pay/:id", async (req, res) => {
     try {
         let bike = req.body;
