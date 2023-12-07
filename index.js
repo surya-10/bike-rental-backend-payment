@@ -1,20 +1,20 @@
 let express = require("express");
 let app = express();
 let cors = require("cors");
-let port = 8000;
+let dotenv = require("dotenv");
 const imagesRouter = require("./routes");
 const dbConnection = require("./db");
 
-
+dotenv.config()
+app.use(express.json());
+app.use(cors());
 
 dbConnection()
 
-app.use(express.json());
-app.use(cors());
 app.use("/", imagesRouter);
 
 
 
-app.listen(port, ()=>{
+app.listen(process.env.port, ()=>{
     console.log("ready");
 })
