@@ -6,7 +6,7 @@ dotenv.config()
 const stripe = require('stripe')(process.env.secret_key);
 
 imagesRouter.get("/", async(req, res)=>{
-    res.send("hello")
+    res.json({msg:"Welcome"});
 })
 
 imagesRouter.post("/booking/payment-page/user-pay/:id", async (req, res) => {
