@@ -9,11 +9,12 @@ imagesRouter.get("/", async(req, res)=>{
     res.json({msg:"Welcome"});
 })
 
-imagesRouter.post("/booking/payment-page/user-pay/:id", async (req, res) => {
+imagesRouter.post("/booking/payment-page/user-pay/:id/:userId", async (req, res) => {
     try {
         let bike = req.body;
         // let {startDate, endDate, days, price} = req.body;
         let { id } = req.params;
+        let {userId} = req.params;
 
         let lineItems = bike.map((prod) => ({
             price_data: {
@@ -30,7 +31,7 @@ imagesRouter.post("/booking/payment-page/user-pay/:id", async (req, res) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: "payment",
-            success_url: "https://master--zippy-mermaid-f891a4.netlify.app/success",
+            success_url: `https://master--zippy-mermaid-f891a4.netlify.app/success?userId=${encodeURIComponent(userId)}`,
             cancel_url: "https://master--zippy-mermaid-f891a4.netlify.app/cancel"
         });
 
